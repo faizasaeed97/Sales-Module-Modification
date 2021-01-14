@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--    <record id="action_sales_inherit" model="ir.actions.act_window">-->
+        <!--        <field name="name">Sales_Inherit</field>-->
+        <!--        <field name="type">ir.actions.act_window</field>-->
+        <!--        <field name="res_model">sales.inherit</field>-->
+        <!--        <field name="view_mode">tree,form</field>-->
+
+        <!--    </record>-->
+
+        <record id="prchs_order_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="booking_date" invisible="0"/>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="before">
+                    <field name="duration"/>
+                </xpath>
+<!--                <xpath expr="//sheet/notebook/page/field[@name='order_line']/tree/field[@name='taxes_id']" position="after">-->
+<!--                  <field name="discount"/>-->
+<!--                </xpath>-->
+
+            </field>
+
+        </record>
+
+        <record id="purchase_order_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.inherit.line</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+<!--                <xpath expr="//field[@name='partner_id']" position="before">-->
+<!--                    <field name="booking_date" invisible="0"/>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//field[@name='date_order']" position="before">-->
+<!--                    <field name="duration"/>-->
+<!--                </xpath>-->
+                <xpath expr="//sheet/notebook/page/field[@name='order_line']/tree/field[@name='taxes_id']" position="after">
+                  <field name="discount"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page/field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                  <field name="price_after"/>
+                </xpath>
+
+            </field>
+
+        </record>
+<!--        <record>-->
+<!--            <field name="name">inherit.purchase.order.line.form.view</field>-->
+<!--            <field name="model">purchase.order</field>-->
+<!--            <field name="inherit_id" ref="purchase.purchase_order_form"/>-->
+<!--            <field name="priority" eval="50"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='order_line']/tree/field[2]" position="inside">-->
+<!--                    <field name="discount"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <!--    <record id="view_attendance_ing_tree" model="ir.ui.view">-->
+        <!--        <field name="name">custom.sale.tree</field>-->
+        <!--        <field name="model">sales.inherit</field>-->
+        <!--        <field name="arch" type="xml">-->
+        <!--            <tree string="Sales list">-->
+        <!--                <field name="roll_number"/>-->
+        <!--                <field name="employee_id"/>-->
+        <!--            </tree>-->
+        <!--        </field>-->
+        <!--    </record>-->
+
+
+        <!--    <record model="ir.ui.view" id="action_form">-->
+        <!--        <field name="name">sales.custom.form</field>-->
+        <!--        <field name="model">sales.inherit</field>-->
+        <!--        <field name="arch" type="xml">-->
+        <!--            <form class="o_lead_opportunity_form">-->
+        <!--                <field name=""/>-->
+        <!--                <field name=""/>-->
+
+
+        <!--            </form>-->
+        <!--        </field>-->
+        <!--    </record>-->
+
+        <!--    <menuitem id="menu_sales_inherit" name="sales_inherit"-->
+        <!--              sequence="12"/>-->
+        <!--&lt;!&ndash;              web_icon="attendance_customization,static/description/icon.png"&ndash;&gt;-->
+        <!--    <menuitem name="sales_inherit" id="ums_sales_inherit_root"-->
+        <!--              parent="menu_sales_inherit"-->
+        <!--              sequence="2" action="action_sales_inherit"/>-->
+    </data>
+
+</odoo>
